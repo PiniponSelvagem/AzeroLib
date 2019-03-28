@@ -1,5 +1,9 @@
 package com.piniponselvagem.azerolib.wowapi;
 
-public interface WowWebApi {
+import com.piniponselvagem.azerolib.wowapi.dto.*;
 
+import java.io.IOException;
+
+public interface WowWebApi {
+    Iterable<RealmDto> getRealmsFor(String region) throws IOException;
 }
