@@ -10,10 +10,10 @@ import java.util.List;
 public abstract class BaseRequest implements Request {
 
     @Override
-    final public Iterable<String> getLines(String url) throws IOException {
+    final public Iterable<String> getLines(String path) throws IOException {
         List<String> lines = new ArrayList<>();
 
-        try(InputStream is = openStream(url)) {
+        try(InputStream is = openStream(path)) {
             final BufferedReader reader = new BufferedReader(new InputStreamReader(is));
             String line;
             while ((line = reader.readLine()) != null) {
@@ -24,5 +24,5 @@ public abstract class BaseRequest implements Request {
         return lines;
     }
 
-    protected abstract InputStream openStream(String url) throws IOException;
+    protected abstract InputStream openStream(String path) throws IOException;
 }
