@@ -7,21 +7,21 @@ public class RealmsStatusRealmDto {
     private final boolean status;
     private final String name;
     private final String slug;
-    private final String battleGroup;
+    private final String battlegroup;
     private final String locale;
     private final String timezone;
 
     private final String[] connected_realms;
 
     public RealmsStatusRealmDto(String type, String population, boolean queue, boolean status, String name, String slug,
-                                String battleGroup, String locale, String timezone, String[] connected_realms) {
+                                String battlegroup, String locale, String timezone, String[] connected_realms) {
         this.type = type;
         this.population = population;
         this.queue = queue;
         this.status = status;
         this.name = name;
         this.slug = slug;
-        this.battleGroup = battleGroup;
+        this.battlegroup = battlegroup;
         this.locale = locale;
         this.timezone = timezone;
         this.connected_realms = connected_realms;
@@ -52,7 +52,7 @@ public class RealmsStatusRealmDto {
     }
 
     public String getBattleGroup() {
-        return battleGroup;
+        return battlegroup;
     }
 
     public String getLocale() {
