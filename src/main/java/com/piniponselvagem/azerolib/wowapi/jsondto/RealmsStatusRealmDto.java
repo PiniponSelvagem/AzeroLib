@@ -1,6 +1,6 @@
 package com.piniponselvagem.azerolib.wowapi.jsondto;
 
-public class RealmsStatusDataRealmDto {
+public class RealmsStatusRealmDto {
     private final String type;
     private final String population;
     private final boolean queue;
@@ -10,9 +10,11 @@ public class RealmsStatusDataRealmDto {
     private final String battleGroup;
     private final String locale;
     private final String timezone;
-    private final ContainerDto[] connectedRealms;
 
-    public RealmsStatusDataRealmDto(String type, String population, boolean queue, boolean status, String name, String slug, String battleGroup, String locale, String timezone, ContainerDto[] connectedRealms) {
+    private final String[] connected_realms;
+
+    public RealmsStatusRealmDto(String type, String population, boolean queue, boolean status, String name, String slug,
+                                String battleGroup, String locale, String timezone, String[] connected_realms) {
         this.type = type;
         this.population = population;
         this.queue = queue;
@@ -22,7 +24,7 @@ public class RealmsStatusDataRealmDto {
         this.battleGroup = battleGroup;
         this.locale = locale;
         this.timezone = timezone;
-        this.connectedRealms = connectedRealms;
+        this.connected_realms = connected_realms;
     }
 
     public String getType() {
@@ -61,7 +63,7 @@ public class RealmsStatusDataRealmDto {
         return timezone;
     }
 
-    public ContainerDto[] getConnectedRealms() {
-        return connectedRealms;
+    public String[] getConnectedRealms() {
+        return connected_realms;
     }
 }

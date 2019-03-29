@@ -10,9 +10,10 @@ public class RealmDto {
     private final String battleGroup;
     private final String locale;
     private final String timezone;
-    private final String[] connectedRealms;
+    private final Iterable<String> connectedRealms;
 
-    public RealmDto(String type, String population, boolean queue, boolean status, String name, String slug, String battleGroup, String locale, String timezone, String[] connectedRealms) {
+    public RealmDto(String type, String population, boolean queue, boolean status, String name, String slug,
+                    String battleGroup, String locale, String timezone, Iterable<String> connectedRealms) {
         this.type = type;
         this.population = population;
         this.queue = queue;
@@ -61,7 +62,7 @@ public class RealmDto {
         return timezone;
     }
 
-    public String[] getConnectedRealms() {
+    public Iterable<String> getConnectedRealms() {
         return connectedRealms;
     }
 }

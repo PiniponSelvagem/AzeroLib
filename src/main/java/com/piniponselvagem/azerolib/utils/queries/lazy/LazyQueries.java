@@ -40,4 +40,20 @@ public class LazyQueries<T> extends BaseQueries<T> {
     public static <T> Queries<T> of(Iterable<T> src) {
         return new LazyQueries<>(src);
     }
+
+    public static <T> Queries<T> from(T[] items) {
+        return new LazyQueries<>(() -> new Iterator<T>() {
+            private int i = 0;
+
+            @Override
+            public boolean hasNext() {
+                return i < items.length;
+            }
+
+            @Override
+            public T next() {
+                return items[i++];
+            }
+        });
+    }
 }

@@ -1,13 +1,13 @@
 package com.piniponselvagem.azerolib.wowapi.jsondto;
 
 public class RealmsStatusDto {
-    private final RealmsStatusDataDto data;
+    private final RealmsStatusRealmDto[] realms;
 
-    public RealmsStatusDto(RealmsStatusDataDto data) {
-        this.data = data;
+    public RealmsStatusDto(RealmsStatusRealmDto[] realms) {
+        this.realms = realms;
     }
 
-    public RealmsStatusDataDto getData() {
-        return data;
+    public RealmsStatusRealmDto[] getRealm() {
+        return realms;
     }
 }
