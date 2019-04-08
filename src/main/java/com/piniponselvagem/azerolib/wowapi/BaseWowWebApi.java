@@ -7,7 +7,7 @@ public abstract class BaseWowWebApi implements WowWebApi {
     private final String REALM_PARAM = "realm=";
 
     public BaseWowWebApi(String locale, String token) {
-        this.LOCALE_TOKEN = String.format("locale=%s&access_token=%s", locale, token);
+        this.LOCALE_TOKEN = String.format("?locale=%s&access_token=%s", locale, token);
     }
 
 

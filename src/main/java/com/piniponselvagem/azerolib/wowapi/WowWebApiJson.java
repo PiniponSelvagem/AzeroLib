@@ -5,7 +5,6 @@ import com.piniponselvagem.azerolib.utils.queries.lazy.LazyQueries;
 import com.piniponselvagem.azerolib.wowapi.dto.*;
 import com.piniponselvagem.azerolib.utils.requests.HttpRequest;
 import com.piniponselvagem.azerolib.utils.requests.Request;
-import com.piniponselvagem.azerolib.wowapi.jsondto.ContainerDto;
 import com.piniponselvagem.azerolib.wowapi.jsondto.RealmsStatusRealmDto;
 import com.piniponselvagem.azerolib.wowapi.jsondto.RealmsStatusDto;
 
