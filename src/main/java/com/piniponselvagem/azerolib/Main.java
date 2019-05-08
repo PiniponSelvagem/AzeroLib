@@ -8,6 +8,7 @@ import com.piniponselvagem.azerolib.wowapi.model.WowService;
 
 import java.io.IOException;
 import java.util.Iterator;
+import java.util.stream.Stream;
 
 public class Main {
 
@@ -28,9 +29,11 @@ public class Main {
             //TODO: Use OAuth2 instead of token
 
             WowService wow = new WowService(new WowWebApiJson(token));
-            Iterable<Realm> realms = wow.getRealmByNameFor("eu", "vashj");
-            Realm realm = realms.iterator().next();
-            System.out.println(realm);
+            Stream<Realm> realms = wow.getRealmByNameFor("eu", "vashj", "silvermoon");
+            realms.forEach(System.out::println);
+
+            Stream<Realm> realmsAll = wow.getRealmsFor("eu");
+            realmsAll.forEach(System.out::println);
         } catch (IOException e) {
             e.printStackTrace();
         }

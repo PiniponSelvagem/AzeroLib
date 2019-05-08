@@ -15,22 +15,39 @@ public abstract class WowWebApiTest {
         this.wowWebApi = wowWebApi;
     }
 
+
     @Test
-    public void getRealmsForRegionEU() throws IOException {
+    public void getRealmsForRegionEU() {
         // Arrange
 
         // Act
-        final Iterable<RealmDto> realms = wowWebApi.getRealmsFor(REGION);
+        final RealmDto[] realms = wowWebApi.getRealmsFor(REGION);
 
         // Assert
-        Assert.assertTrue(realms.iterator().hasNext());
-        assertEachRealmIsValid(realms);
+        Assert.assertNotNull(realms);
+        assertEachRealmIsValid(realms, 267);
+    }
+
+    @Test
+    public void getRealmVashjRegionEU() {
+        // Arrange
+        String realmName = "vashj";
+
+        // Act
+        final RealmDto[] realms = wowWebApi.getRealmByNameFor(REGION, realmName);
+
+        // Assert
+        Assert.assertNotNull(realms);
+        assertEachRealmIsValid(realms, 1);
     }
 
 
-    private void assertEachRealmIsValid(Iterable<RealmDto> realms) {
+    private void assertEachRealmIsValid(RealmDto[] realms, int expected) {
+        int count = 0;
         for(RealmDto realm : realms) {
             Assert.assertNotNull(realm);
+            ++count;
         }
+        Assert.assertEquals(expected, count);
     }
 }

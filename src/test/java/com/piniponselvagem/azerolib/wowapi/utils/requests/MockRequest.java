@@ -59,7 +59,7 @@ public class MockRequest extends BaseRequest {
                 .replace("=", "")
                 .replace(",", "")
                 .replace(".", "");
-        
+
         formattedUrl = formattedUrl
                 .substring(0, formattedUrl.lastIndexOf("access"))
                 .concat(".json");

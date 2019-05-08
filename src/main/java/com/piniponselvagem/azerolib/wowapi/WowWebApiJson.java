@@ -1,7 +1,6 @@
 package com.piniponselvagem.azerolib.wowapi;
 
 import com.google.gson.Gson;
-import com.piniponselvagem.azerolib.utils.queries.lazy.LazyQueries;
 import com.piniponselvagem.azerolib.wowapi.dto.*;
 import com.piniponselvagem.azerolib.utils.requests.HttpRequest;
 import com.piniponselvagem.azerolib.utils.requests.Request;
@@ -33,23 +32,34 @@ public class WowWebApiJson extends BaseWowWebApi {
 
 
     @Override
-    public Iterable<RealmDto> getRealmsFor(String region) throws IOException {
+    public RealmDto[] getRealmsFor(String region) {
         return getRealmByNameFor(region);
     }
 
     @Override
-    public Iterable<RealmDto> getRealmByNameFor(String region, String... realm) throws IOException {
+    public RealmDto[] getRealmByNameFor(String region, String... realm) {
         String url;
         if (realm.length > 0)
             url = getRealmUrl(region, realm);
         else
             url = getRealmAllUrl(region);
-        Iterable<String> src = req.getLines(url);
+        Iterable<String> src = null;
+        try {
+            src = req.getLines(url);
+        } catch (IOException e) {
+            //TODO: THIS IS RETARDED, FIX LATER
+            throw new RuntimeException(e);
+        }
         String body = String.join("", src);
         RealmsStatusDto dto = gson.fromJson(body, RealmsStatusDto.class);
         RealmsStatusRealmDto[] realmDto = dto.getRealm();
 
-        return LazyQueries.of(Arrays.asList(realmDto)).map(rsdrDto -> toRealmDto(rsdrDto));
+        RealmDto[] realms = new RealmDto[realmDto.length];
+        for (int i = 0; i<realms.length; ++i) {
+            realms[i] = toRealmDto(realmDto[i]);
+        }
+
+        return realms;
     }
 
     private RealmDto toRealmDto(RealmsStatusRealmDto dto) {
